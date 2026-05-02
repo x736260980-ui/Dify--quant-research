@@ -33,7 +33,7 @@ https://github.com/x736260980-ui/Dify--trend-crawler
 
 功能目标：Agent 根据接口返回的 analysis_summary（技术面结论）和 chart_url（走势图），结合大模型自身的金融分析能力进行二次交叉验证，最终输出结构化、可视化的投研参考报告。
 [结果演示示例]
-<img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/b65f6bf7-f058-4edc-a1ef-6ef163c968bd" />
+<img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/c52fe64e-8704-46ab-8cca-49dcc3efec76" />
 
 Tips：本项目使用的Fastapi同样可以合并成一个，这样更规范，但考虑到复用性和拆解性，这里并未合并，也是为了以后升级更方便，避免反复修改
 
