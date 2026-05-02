@@ -11,8 +11,6 @@
 
 因子计算：利用 Pandas-TA 计算 MACD、RSI(14)、MFI(14)、布林带等核心技术因子，并由 Matplotlib 自动生成包含走势与布林带的趋势图表。
 
-
-
 2. 插件封装与静态分发
 
 将复杂的金融计算过程转化为大模型可以直接理解和使用的标准化服务。
@@ -35,7 +33,7 @@ https://github.com/x736260980-ui/Dify--trend-crawler
 
 功能目标：Agent 根据接口返回的 analysis_summary（技术面结论）和 chart_url（走势图），结合大模型自身的金融分析能力进行二次交叉验证，最终输出结构化、可视化的投研参考报告。
 [结果演示示例]
-<img width="427" height="421" alt="image" src="https://github.com/user-attachments/assets/b65f6bf7-f058-4edc-a1ef-6ef163c968bd" />
+<img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/b65f6bf7-f058-4edc-a1ef-6ef163c968bd" />
 
 Tips：本项目使用的Fastapi同样可以合并成一个，这样更规范，但考虑到复用性和拆解性，这里并未合并，也是为了以后升级更方便，避免反复修改
 
