@@ -1,5 +1,5 @@
 # Dify--quant-research
-本项目是一个结合了金融量化数据与大模型（LLM）分析能力的投研辅助工具。通过封装基于 AkShare 和 Pandas-TA 的量化计算引擎，为 Dify 等工作流平台提供标准的 API 节点，实现从底层数据拉取、技术因子计算到最终文本诊断的可视化全链路。
+本项目是一个结合了金融量化数据与大模型（LLM）分析能力的投研辅助工具。通过封装基于 AkShare 和 Pandas-TA 的量化计算引擎，为 Dify 等工作流平台提供标准的 API 节点，实现从底层数据拉取、技术因子计算到最终文本诊断的可视化全链路。\n
 PS：项目目前仅个人使用，所以仅针对本地及内网环境进行开发与测试
 <img width="865" height="421" alt="image" src="https://github.com/user-attachments/assets/8695565d-9fde-459b-a077-262b36133e41" />
 本工具的运行逻辑分为三个核心阶段：
