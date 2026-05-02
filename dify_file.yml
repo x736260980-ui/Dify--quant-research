@@ -4,14 +4,9 @@ app:
   icon_background: '#FFEAD5'
   icon_type: emoji
   mode: advanced-chat
-  name: 信息检索+舆情分析（web+b站）v2
+  name: akshare数据股票因子分析
   use_icon_as_answer_icon: true
 dependencies:
-- current_identifier: null
-  type: marketplace
-  value:
-    marketplace_plugin_unique_identifier: langgenius/tavily:0.1.5@d155ce82c081df2a32a7bf4bd9ded15028dee4cc5c54ad1bd39c9a2726e8cbe4
-    version: null
 - current_identifier: null
   type: marketplace
   value:
@@ -26,30 +21,6 @@ kind: app
 version: 0.6.0
 workflow:
   conversation_variables:
-  - description: 前轮对话收集结果
-    id: b761ec20-57b8-4b6f-bce1-e5ab8722e95b
-    name: historyinfo
-    selector:
-    - conversation
-    - historyinfo
-    value: []
-    value_type: array[string]
-  - description: ''
-    id: 07ea9b5b-edf2-471d-8206-50e95e7ab87e
-    name: topics
-    selector:
-    - conversation
-    - topics
-    value: []
-    value_type: array[string]
-  - description: ''
-    id: a9049588-f66f-4c3a-a30e-5952a677baa9
-    name: nextSearchTopic
-    selector:
-    - conversation
-    - nextSearchTopic
-    value: ''
-    value_type: string
   - description: ''
     id: 2e0a2539-345c-4723-8b1b-b653e1a0caef
     name: findings
@@ -58,14 +29,6 @@ workflow:
     - findings
     value: []
     value_type: array[string]
-  - description: ''
-    id: 23d208d1-a50d-468c-8757-ad49da0886e1
-    name: shouldContinue
-    selector:
-    - conversation
-    - shouldContinue
-    value: 'true'
-    value_type: string
   environment_variables: []
   features:
     file_upload:
@@ -117,198 +80,17 @@ workflow:
   graph:
     edges:
     - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: iteration-start
-        targetType: llm
-      id: 1739244888446start-source-1739245286499-target
-      selected: false
-      source: 1739244888446start
-      sourceHandle: source
-      target: '1739245286499'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: llm
-        targetType: tool
-      id: 1739245286499-source-1739245446901-target
-      selected: false
-      source: '1739245286499'
-      sourceHandle: source
-      target: '1739245446901'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: llm
-        targetType: tool
-      id: 1739245286499-source-1739245524260-target
-      selected: false
-      source: '1739245286499'
-      sourceHandle: source
-      target: '1739245524260'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: false
-        sourceType: start
-        targetType: code
-      id: 1739229221219-source-1739245548624-target
-      selected: false
-      source: '1739229221219'
-      sourceHandle: source
-      target: '1739245548624'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        sourceType: code
+        isInLoop: false
+        sourceType: parameter-extractor
         targetType: iteration
-      id: 1739245548624-source-1739244888446-target
+      id: 1776778191412-source-1776778390328-target
       selected: false
-      source: '1739245548624'
+      source: '1776778191412'
       sourceHandle: source
-      target: '1739244888446'
+      target: '1776778390328'
       targetHandle: target
       type: custom
       zIndex: 0
-    - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: if-else
-        targetType: tool
-      id: 1739245723720-true-1739245424964-target
-      selected: false
-      source: '1739245723720'
-      sourceHandle: 'true'
-      target: '1739245424964'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: tool
-        targetType: assigner
-      id: 1739245446901-source-1739245826988-target
-      selected: false
-      source: '1739245446901'
-      sourceHandle: source
-      target: '1739245826988'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: tool
-        targetType: assigner
-      id: 1739245424964-source-1739246085820-target
-      selected: false
-      source: '1739245424964'
-      sourceHandle: source
-      target: '1739246085820'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: tool
-        targetType: assigner
-      id: 1739245524260-source-1739245826988-target
-      selected: false
-      source: '1739245524260'
-      sourceHandle: source
-      target: '1739245826988'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: assigner
-        targetType: if-else
-      id: 1739245826988-source-1739245723720-target
-      selected: false
-      source: '1739245826988'
-      sourceHandle: source
-      target: '1739245723720'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: assigner
-        targetType: template-transform
-      id: 1739246085820-source-1739254060247-target
-      selected: false
-      source: '1739246085820'
-      sourceHandle: source
-      target: '1739254060247'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: template-transform
-        targetType: variable-aggregator
-      id: 1739254060247-source-1739254296073-target
-      selected: false
-      source: '1739254060247'
-      sourceHandle: source
-      target: '1739254296073'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: variable-aggregator
-        targetType: answer
-      id: 1739254296073-source-1739253994297-target
-      selected: false
-      source: '1739254296073'
-      sourceHandle: source
-      target: '1739253994297'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: if-else
-        targetType: template-transform
-      id: 1739245723720-false-1739254516383-target
-      selected: false
-      source: '1739245723720'
-      sourceHandle: 'false'
-      target: '1739254516383'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: true
-        iteration_id: '1739244888446'
-        sourceType: template-transform
-        targetType: variable-aggregator
-      id: 1739254516383-source-1739254296073-target
-      selected: false
-      source: '1739254516383'
-      sourceHandle: source
-      target: '1739254296073'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
     - data:
         isInIteration: true
         isInLoop: false
@@ -316,6 +98,7 @@ workflow:
         sourceType: iteration-start
         targetType: tool
       id: 1776778390328start-source-1776778536282-target
+      selected: false
       source: 1776778390328start
       sourceHandle: source
       target: '1776778536282'
@@ -329,6 +112,7 @@ workflow:
         sourceType: tool
         targetType: assigner
       id: 1776778536282-source-1776778574203-target
+      selected: false
       source: '1776778536282'
       sourceHandle: source
       target: '1776778574203'
@@ -337,12 +121,13 @@ workflow:
       zIndex: 1002
     - data:
         isInLoop: false
-        sourceType: iteration
-        targetType: llm
-      id: 1776778390328-source-1739246156652-target
-      source: '1776778390328'
+        sourceType: llm
+        targetType: answer
+      id: 1739246156652-source-answer-target
+      selected: false
+      source: '1739246156652'
       sourceHandle: source
-      target: '1739246156652'
+      target: answer
       targetHandle: target
       type: custom
       zIndex: 0
@@ -353,6 +138,7 @@ workflow:
         sourceType: tool
         targetType: template-transform
       id: 1776778536282-source-1776778841977-target
+      selected: false
       source: '1776778536282'
       sourceHandle: source
       target: '1776778841977'
@@ -366,6 +152,7 @@ workflow:
         sourceType: template-transform
         targetType: answer
       id: 1776778841977-source-1776861389665-target
+      selected: false
       source: '1776778841977'
       sourceHandle: source
       target: '1776861389665'
@@ -375,12 +162,37 @@ workflow:
     - data:
         isInIteration: false
         isInLoop: false
-        sourceType: iteration
-        targetType: answer
-      id: 1739244888446-source-1776946362425-target
-      source: '1739244888446'
+        sourceType: tool
+        targetType: tool
+      id: 1776865605690-source-1776865406419-target
+      selected: false
+      source: '1776865605690'
       sourceHandle: source
-      target: '1776946362425'
+      target: '1776865406419'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1776865633941-source-1776775338182-target
+      selected: false
+      source: '1776865633941'
+      sourceHandle: source
+      target: '1776775338182'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: llm
+      id: 1776947104022-source-1739246156652-target
+      selected: false
+      source: '1776947104022'
+      sourceHandle: source
+      target: '1739246156652'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -389,10 +201,24 @@ workflow:
         isInLoop: false
         sourceType: answer
         targetType: llm
-      id: 1776946362425-source-1776775338182-target
-      source: '1776946362425'
+      id: 1776947138410-source-1739246156652-target
+      selected: false
+      source: '1776947138410'
       sourceHandle: source
-      target: '1776775338182'
+      target: '1739246156652'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: answer
+      id: 1776778390328-source-1776947168738-target
+      selected: false
+      source: '1776778390328'
+      sourceHandle: source
+      target: '1776947168738'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -400,57 +226,81 @@ workflow:
         isInIteration: false
         isInLoop: false
         sourceType: answer
-        targetType: iteration
-      id: 1776946384500-source-1776778390328-target
-      source: '1776946384500'
+        targetType: llm
+      id: 1776947168738-source-1739246156652-target
+      selected: false
+      source: '1776947168738'
       sourceHandle: source
-      target: '1776778390328'
+      target: '1739246156652'
       targetHandle: target
       type: custom
       zIndex: 0
     - data:
         isInIteration: false
+        isInLoop: false
+        sourceType: answer
+        targetType: parameter-extractor
+      id: 1776948900874-source-1776778191412-target
+      selected: false
+      source: '1776948900874'
+      sourceHandle: source
+      target: '1776778191412'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1739229221219-source-1776865104091-target
+      selected: false
+      source: '1739229221219'
+      sourceHandle: source
+      target: '1776865104091'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
         isInLoop: false
         sourceType: llm
-        targetType: assigner
-      id: 1739246156652-source-1776949093407-target
-      source: '1739246156652'
+        targetType: if-else
+      id: 1776865104091-source-1776951200140-target
+      source: '1776865104091'
       sourceHandle: source
-      target: '1776949093407'
+      target: '1776951200140'
       targetHandle: target
       type: custom
       zIndex: 0
     - data:
-        isInIteration: false
         isInLoop: false
-        sourceType: assigner
+        sourceType: if-else
+        targetType: tool
+      id: 1776951200140-true-1776865605690-target
+      source: '1776951200140'
+      sourceHandle: 'true'
+      target: '1776865605690'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1776951200140-true-1776865633941-target
+      source: '1776951200140'
+      sourceHandle: 'true'
+      target: '1776865633941'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
         targetType: answer
-      id: 1776949093407-source-answer-target
-      source: '1776949093407'
-      sourceHandle: source
-      target: answer
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: agent
-        targetType: parameter-extractor
-      id: 1777036926643-source-1777037285306-target
-      source: '1777036926643'
-      sourceHandle: source
-      target: '1777037285306'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
-        sourceType: parameter-extractor
-        targetType: answer
-      id: 1777037285306-source-1776946384500-target
-      source: '1777037285306'
-      sourceHandle: source
-      target: '1776946384500'
+      id: 1776951200140-false-1776951238187-target
+      source: '1776951200140'
+      sourceHandle: 'false'
+      target: '1776951238187'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -458,10 +308,54 @@ workflow:
         isInLoop: false
         sourceType: llm
         targetType: agent
-      id: 1776775338182-source-1777036926643-target
+      id: 1776775338182-source-1777038274101-target
       source: '1776775338182'
       sourceHandle: source
-      target: '1777036926643'
+      target: '1777038274101'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: agent
+        targetType: answer
+      id: 1777038274101-source-1776948900874-target
+      source: '1777038274101'
+      sourceHandle: source
+      target: '1776948900874'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: agent
+      id: 1776865633941-source-1777180873585-target
+      source: '1776865633941'
+      sourceHandle: source
+      target: '1777180873585'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: agent
+        targetType: answer
+      id: 1777180873585-source-1776947104022-target
+      source: '1777180873585'
+      sourceHandle: source
+      target: '1776947104022'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1776865406419-source-1776947138410-target
+      source: '1776865406419'
+      sourceHandle: source
+      target: '1776947138410'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -471,23 +365,15 @@ workflow:
         selected: false
         title: 开始
         type: start
-        variables:
-        - default: '1'
-          hint: ''
-          label: depth
-          options: []
-          placeholder: ''
-          required: false
-          type: number
-          variable: depth
-      height: 108
+        variables: []
+      height: 72
       id: '1739229221219'
       position:
-        x: -275.0939780015751
-        y: 33.116268781879256
+        x: 211.36049731945428
+        y: -8.784380259964408
       positionAbsolute:
-        x: -275.0939780015751
-        y: 33.116268781879256
+        x: 211.36049731945428
+        y: -8.784380259964408
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -505,440 +391,23 @@ workflow:
       height: 102
       id: answer
       position:
-        x: 5663.116679160862
-        y: 311.61108189041965
+        x: 5777.557658132811
+        y: 258.7799680688544
       positionAbsolute:
-        x: 5663.116679160862
-        y: 311.61108189041965
+        x: 5777.557658132811
+        y: 258.7799680688544
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 241
-    - data:
-        desc: ''
-        error_handle_mode: terminated
-        height: 1015
-        is_parallel: false
-        iterator_selector:
-        - '1739245548624'
-        - array
-        output_selector:
-        - '1739254296073'
-        - output
-        output_type: array[string]
-        parallel_nums: 10
-        selected: false
-        start_node_id: 1739244888446start
-        title: 迭代
-        type: iteration
-        width: 1589
-      height: 1015
-      id: '1739244888446'
-      position:
-        x: 340.1959605305194
-        y: -8.752263342805293
-      positionAbsolute:
-        x: 340.1959605305194
-        y: -8.752263342805293
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 1589
-      zIndex: 1
-    - data:
-        desc: ''
-        isInIteration: true
-        selected: false
-        title: ''
-        type: iteration-start
-      draggable: false
-      height: 48
-      id: 1739244888446start
-      parentId: '1739244888446'
-      position:
-        x: 60
-        y: 169
-      positionAbsolute:
-        x: 400.1959605305194
-        y: 160.2477366571947
-      selectable: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom-iteration-start
-      width: 44
-      zIndex: 1002
-    - data:
-        context:
-          enabled: false
-          variable_selector: []
-        desc: ''
-        isInIteration: true
-        iteration_id: '1739244888446'
-        memory:
-          query_prompt_template: '## 主题
-
-            {{#sys.query#}}
-
-
-            ## 当前发现
-
-            /{{#conversation.findings#}}
-
-
-            ## 已搜索的主题
-
-            {{#conversation.topics#}}
-
-            ## 已收集的数据
-
-            {{#conversation.historyinfo#}}
-
-
-            /'
-          role_prefix:
-            assistant: ''
-            user: ''
-          window:
-            enabled: false
-            size: 50
-        model:
-          completion_params:
-            response_format: json_object
-            temperature: 0.7
-          mode: chat
-          name: deepseek-chat
-          provider: langgenius/deepseek/deepseek
-        prompt_template:
-        - id: 2acdb5a9-823a-4ce3-8dbe-401540a61bc5
-          role: system
-          text: "您是一个研究代理，负责调查以下主题。\n您发现了什么？还有哪些问题尚未解答？下一步应该调查哪些具体方面？\n\n## 输出\n-\
-            \ 请不要输出与已搜索主题完全相同的主题\n- 如果需要进一步搜索信息，请设置nextSearchTopic\n- 如果已获得足够信息，请将shouldContinue设置为false\n\
-            - 请以json格式输出\n\n```json\nnextSearchTopic: str | None\nshouldContinue:\
-            \ bool \n```\n\n\n"
-        selected: false
-        title: LLM
-        type: llm
-        variables: []
-        vision:
-          enabled: false
-      height: 87
-      id: '1739245286499'
-      parentId: '1739244888446'
-      position:
-        x: 184
-        y: 147
-      positionAbsolute:
-        x: 524.1959605305194
-        y: 138.2477366571947
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-      zIndex: 1002
-    - data:
-        desc: ''
-        isInIteration: true
-        iteration_id: '1739244888446'
-        provider_id: tavily
-        provider_name: tavily
-        provider_type: builtin
-        selected: false
-        title: Tavily Search
-        tool_configurations:
-          days:
-            type: constant
-            value: 3
-          exclude_domains:
-            type: constant
-            value: null
-          include_answer:
-            type: constant
-            value: 0
-          include_domains:
-            type: constant
-            value: null
-          include_image_descriptions:
-            type: constant
-            value: 0
-          include_images:
-            type: constant
-            value: 0
-          include_raw_content:
-            type: constant
-            value: 0
-          max_results:
-            type: constant
-            value: 5
-          search_depth:
-            type: constant
-            value: advanced
-          topic:
-            type: constant
-            value: general
-        tool_label: Tavily Search
-        tool_name: tavily_search
-        tool_node_version: '2'
-        tool_parameters:
-          query:
-            type: mixed
-            value: '{{#conversation.nextSearchTopic#}}'
-        type: tool
-      height: 321
-      id: '1739245424964'
-      parentId: '1739244888446'
-      position:
-        x: 465.1788173171378
-        y: 428.21190059722903
-      positionAbsolute:
-        x: 805.3747778476572
-        y: 419.45963725442374
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-      zIndex: 1002
-    - data:
-        desc: ''
-        isInIteration: true
-        iteration_id: '1739244888446'
-        provider_id: json_process
-        provider_name: json_process
-        provider_type: builtin
-        selected: false
-        title: 提取nextSearchTopic
-        tool_configurations:
-          ensure_ascii:
-            type: constant
-            value: 1
-        tool_label: JSON Parse
-        tool_name: parse
-        tool_node_version: '2'
-        tool_parameters:
-          content:
-            type: mixed
-            value: '{{#1739245286499.text#}}'
-          json_filter:
-            type: mixed
-            value: nextSearchTopic
-        type: tool
-      height: 87
-      id: '1739245446901'
-      parentId: '1739244888446'
-      position:
-        x: 521.9685668669795
-        y: 250.685668669792
-      positionAbsolute:
-        x: 862.1645273974989
-        y: 241.9334053269867
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-      zIndex: 1002
-    - data:
-        desc: ''
-        isInIteration: true
-        iteration_id: '1739244888446'
-        provider_id: json_process
-        provider_name: json_process
-        provider_type: builtin
-        selected: false
-        title: 提取shouldContinue
-        tool_configurations:
-          ensure_ascii:
-            type: constant
-            value: 1
-        tool_label: JSON Parse
-        tool_name: parse
-        tool_node_version: '2'
-        tool_parameters:
-          content:
-            type: mixed
-            value: '{{#1739245286499.text#}}'
-          json_filter:
-            type: mixed
-            value: shouldContinue
-        type: tool
-      height: 87
-      id: '1739245524260'
-      parentId: '1739244888446'
-      position:
-        x: 525
-        y: 134
-      positionAbsolute:
-        x: 865.1959605305194
-        y: 125.24773665719471
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-      zIndex: 1002
-    - data:
-        code: "\ndef main(depth: int) -> dict:\n    depth = depth or 1\n    array\
-          \ = list(range(depth))\n    return {\n        \"array\": array,\n      \
-          \  \"depth\": depth\n    }\n"
-        code_language: python3
-        desc: ''
-        outputs:
-          array:
-            children: null
-            type: array[number]
-          depth:
-            children: null
-            type: number
-        selected: false
-        title: 创建数组
-        type: code
-        variables:
-        - value_selector:
-          - '1739229221219'
-          - depth
-          value_type: number
-          variable: depth
-      height: 51
-      id: '1739245548624'
-      position:
-        x: 13.524289845660377
-        y: 39.938851587208816
-      positionAbsolute:
-        x: 13.524289845660377
-        y: 39.938851587208816
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-    - data:
-        cases:
-        - case_id: 'true'
-          conditions:
-          - comparison_operator: is
-            id: b3169e80-3090-4a5b-8df4-3148d7afcb4d
-            value: 'True'
-            varType: string
-            variable_selector:
-            - '1739245524260'
-            - text
-          id: 'true'
-          logical_operator: and
-        desc: ''
-        isInIteration: true
-        iteration_id: '1739244888446'
-        selected: false
-        title: IF/ELSE
-        type: if-else
-      height: 123
-      id: '1739245723720'
-      parentId: '1739244888446'
-      position:
-        x: 81.40078461392295
-        y: 424.54058476112846
-      positionAbsolute:
-        x: 421.59674514444237
-        y: 415.78832141832316
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-      zIndex: 1002
-    - data:
-        desc: ''
-        isInIteration: true
-        items:
-        - input_type: variable
-          operation: over-write
-          value:
-          - conversation
-          - nextSearchTopic
-          variable_selector:
-          - conversation
-          - nextSearchTopic
-          write_mode: over-write
-        - input_type: variable
-          operation: over-write
-          value:
-          - '1739245524260'
-          - text
-          variable_selector:
-          - conversation
-          - shouldContinue
-          write_mode: over-write
-        - input_type: variable
-          operation: append
-          value:
-          - conversation
-          - nextSearchTopic
-          variable_selector:
-          - conversation
-          - topics
-          write_mode: over-write
-        iteration_id: '1739244888446'
-        selected: false
-        title: 变量赋值
-        type: assigner
-        version: '2'
-      height: 135
-      id: '1739245826988'
-      parentId: '1739244888446'
-      position:
-        x: 971.5604936231879
-        y: 177.15084808483755
-      positionAbsolute:
-        x: 1311.7564541537072
-        y: 168.39858474203226
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-      zIndex: 1002
-    - data:
-        desc: ''
-        isInIteration: true
-        items:
-        - input_type: variable
-          operation: append
-          value:
-          - '1739245424964'
-          - text
-          variable_selector:
-          - conversation
-          - findings
-          write_mode: over-write
-        iteration_id: '1739244888446'
-        selected: true
-        title: 变量赋值
-        type: assigner
-        version: '2'
-      height: 83
-      id: '1739246085820'
-      parentId: '1739244888446'
-      position:
-        x: 762.175253669222
-        y: 412.3695263174238
-      positionAbsolute:
-        x: 1102.3712141997414
-        y: 403.6172629746185
-      selected: true
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-      zIndex: 1002
     - data:
         context:
           enabled: false
           variable_selector: []
         desc: ''
         memory:
-          query_prompt_template: "## topic\n{{#sys.query#}}\n\n# findings \n{{#conversation.findings#}}\n"
+          query_prompt_template: ''
           role_prefix:
             assistant: ''
             user: ''
@@ -953,23 +422,68 @@ workflow:
         prompt_template:
         - id: 89c17d58-6a63-4f4f-98fe-f6534ec1ecb0
           role: system
-          text: "# Role\n你是一位就职于头部科技大厂或顶尖战略咨询机构的资深商业洞察分析师（Business Insight Analyst）。你拥有极高的商业嗅觉，擅长在海量的互联网碎片信息中，精准定位“官方叙事”与“真实口碑”之间的巨大撕裂点。\n\
-            \n# Objective\n你的任务是深度融合并交叉比对【全网客观事实】与【社交媒体真实情绪】，不带任何感情色彩地撰写一份直击痛点的商业情报与舆情简报。决策层不需要毫无态度的信息汇总，他们需要你指出致命的盲点或潜在的爆发机会。\n\
-            \n# Input Data\n1. 【Web宏观事实/官方叙事】(Deep Research)：{{#conversation.findings#}}\n\
-            \   包含标的（企业、产品或事件）近期的官方公告、媒体通稿、产品参数及行业宏观背景。\n2. 【B站舆情与消费者情绪】(Social Sentiment)：{{#1776778390328.output#}}\n\
-            \   包含真实消费者、散户对于该标的的最直观反馈、吐槽、造梗或拥护情绪。\n3. 【过往调研档案 (History)】:{{#conversation.historyinfo#}}(注：此项可能为空。如果不为空，它包含了用户在上一轮查询的标的分析结论。)\n\
-            \n\n# Analytical Framework (思考链路)\n在撰写报告前，你必须进行以下“预期差”推演：\n- 完美共振：官方宣传的卖点（Web）完美击中了用户的爽点（B站），口碑正在裂变\
-            \ = 确认爆款趋势，建议加大营销杠杆。\n- 致命背离：官方新闻在疯狂吹捧某项技术/理念（Web），但 B 站评论区充斥着对核心缺陷的愤怒或嘲笑\
-            \ = 典型的公关灾难或产品定位失败，需立即预警。\n- 隐性需求：官方未曾重点提及的功能或细节（Web），却在 B 站引起了极高的讨论热度\
-            \ = 发现了未被满足的增量市场，建议产品线跟进。\n# Analytical Framework (思考链路补充) 在生成本次报告时，请严格执行以下逻辑判断：\
-            \ - 如果【过往调研档案】为空：仅针对当前输入的新标的进行深度分析。 - 如果【过往调研档案】不为空：你必须在报告中进行“新旧标的”的横向联系对比（例如：与上一轮调研的角色A相比，本次调研的角色B在舆情健康度/核心痛点上有什么本质区别？谁的潜在商业价值/产品力更强？），然后再展开对新标的的独立分析。\n\
-            \n# Output Structure\n请严格按照以下结构输出 Markdown 格式的商业洞察报告：\n\n## 一、 核心预期差与战略定调\
-            \ (Core Insight)\n[字数限制：200字以内。一针见血地指出当前官方宣发与民间口碑的最大撕裂点或共振点在哪里。明确给出当前的舆情健康度评级：极度危险、暗流涌动、健康发展或爆发前夕。]\n\
-            \n## 二、 叙事与现实的交叉验证 (Narrative vs. Reality)\n[结合输入的数据，分点阐述：]\n1. **官方锚点**：目前媒体和企业试图在公众心中植入什么认知？（引用\
-            \ Web 核心数据）\n2. **情绪折射**：公众真实买单了吗？他们最真实的关注点和愤怒点集中在哪里？（必须引用具体的 B 站代表性评论或高频吐槽点，并给出各个情绪占比）\n\
-            \n## 三、 商业推演与应对策略 (Actionable Strategy)\n- **风险阻断/营销杠杆**：如果作为该企业的操盘手，现在最紧急的产品迭代方向或公关回应口径应该是什么？对于现状有个清晰的描述和分析\n\
-            \n# Constraints\n- 语气必须极度客观、一针见血。\n- 拒绝使用“总而言之”、“在这个充满挑战的时代”等陈词滥调。\n-\
-            \ 结论必须由具体的文本证据（如某条具体的 B 站评论，或某篇确切的报道）来支撑。"
+          text: '# Role
+
+            你是一位就职于顶级量化对冲基金的资深另类数据分析师（Alternative Data Analyst）。你拥有极高的商业敏锐度，擅长在海量噪音中剥离出核心的“预期差”。
+
+
+            # Objective
+
+            你的任务是接收并深度融合三个维度的数据（官方事实、量价因子、大众情绪），不带任何感情色彩地撰写一份极具实战指导意义的投研情报简报。请绝对避免流水账式的复述，高管们只需要看洞察与结论。
+
+
+            # Analytical Framework (思考链路)
+
+            在撰写报告前，你必须在内部进行以下逻辑推演：
+
+            - 共振测试：基本面利好（Web） + 资金面狂热（AkShare） + 散户情绪沸腾（B站） = 趋势确立或加速赶顶？
+
+            - 背离测试：资金面强势拉升（AkShare），但 B 站情绪极度负面（吐槽产品缺陷） = 典型的概念炒作与基本面透支，存在极高的诱多风险。
+
+            - 预期差发掘：官方新闻平平无奇（Web），但 B 站出现了现象级的口碑发酵，且量价数据（AkShare）刚刚出现异动 = 绝佳的左侧潜伏机会。
+
+
+            # Output Structure
+
+            请严格按照以下结构输出 Markdown 格式的分析报告：
+
+
+            ## 核心预期差与战略定调 (Core Insight)
+
+            [一针见血地指出当前市场共识是什么，真实的撕裂点在哪里。明确给出战略定调：顺势做多、左侧规避、还是关注反转拐点。]
+
+
+            ## 数据交叉验证分析 (Cross-Validation Analysis)
+
+            [结合输入的数据，分点阐述：]
+
+            1. **资金与形态折射**：基于 AkShare 提供的区间涨幅、极值和换手率，判断当前筹码处于什么结构（如：缩量洗盘、高位派发、加速主升浪）。给出akshare数据的开始结束时间，并输出图表加强说服力
+
+            2. **事实与情绪博弈**：对比 Web 检索到的官方利好/利空，与 B 站抓取到的终端真实口碑。它们是相互印证，还是南辕北辙？如果b站获取的信息与话题并无关联，则可能说明民间死寂，或者信息来源不充分，这点需要说明
+
+
+            ## 实战推演与风险控制 (Actionable Strategy & Risk)
+
+            - **交易/商业推演**：如果作为多头（或企业决策者），此刻最应该利用的逻辑是什么？
+
+            - **左侧风险预警**：基于当前的数据背离情况，列出未来一周内最有可能刺破逻辑的“黑天鹅”因素。
+
+
+            # Constraints
+
+            - 语气必须极度客观、干练。
+
+            - 严禁使用“总而言之”、“在这个充满变数的市场中”等毫无意义的废话。
+
+            - 必须引用具体的数据点（如具体的涨幅 %、具体的 B 站代表性吐槽）来支撑你的结论。
+
+            - 最后给出你的总结性建议（观望，看涨看跌）'
+        - id: ad865175-ad5d-46d6-b663-5db68fc2793d
+          role: user
+          text: "# Input Data\n1. 【Web宏观事实】(Deep Research)：{{#1776865406419.text#}}\n\
+            \   包含标的近期的新闻公告、研报摘要及行业宏观背景。\n2. 【AkShare量价因子】(Quant Data)：{{#1777180873585.text#}}\n\
+            \   包含标的近期涨跌幅、最高/最低价边界、换手率及收盘价时序轨迹。\n3. 【B站舆情与情绪】(Social Sentiment)：\n\
+            {{#conversation.findings#}}\n   包含消费者、散户对于该标的（或相关产品/事件）的最真实反馈与情绪倾向。"
         selected: false
         title: Reasoning Model
         type: llm
@@ -979,167 +493,34 @@ workflow:
       height: 87
       id: '1739246156652'
       position:
-        x: 5091.388872100177
-        y: 81.13958489510776
+        x: 5422.613213740113
+        y: 258.7799680688544
       positionAbsolute:
-        x: 5091.388872100177
-        y: 81.13958489510776
+        x: 5422.613213740113
+        y: 258.7799680688544
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 241
-    - data:
-        answer: '{{#1739254296073.output#}}'
-        desc: ''
-        isInIteration: true
-        iteration_id: '1739244888446'
-        selected: false
-        title: 回答
-        type: answer
-        variables: []
-      height: 102
-      id: '1739253994297'
-      parentId: '1739244888446'
-      position:
-        x: 1185.456205283395
-        y: 817.5124629223612
-      positionAbsolute:
-        x: 1525.6521658139145
-        y: 808.760199579556
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-      zIndex: 1002
-    - data:
-        desc: ''
-        isInIteration: true
-        iteration_id: '1739244888446'
-        selected: false
-        template: '{{ index + 1 }}/{{ depth }}回合搜索
-
-
-          '
-        title: 搜索捏~
-        type: template-transform
-        variables:
-        - value_selector:
-          - '1739244888446'
-          - index
-          variable: index
-        - value_selector:
-          - '1739229221219'
-          - depth
-          variable: depth
-      height: 51
-      id: '1739254060247'
-      parentId: '1739244888446'
-      position:
-        x: 769.1965398414884
-        y: 588.4607625392368
-      positionAbsolute:
-        x: 1109.3925003720078
-        y: 579.7084991964316
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-      zIndex: 1002
-    - data:
-        desc: ''
-        isInIteration: true
-        iteration_id: '1739244888446'
-        output_type: string
-        selected: false
-        title: 变量聚合器
-        type: variable-aggregator
-        variables:
-        - - '1739254060247'
-          - output
-        - - '1739254516383'
-          - output
-      height: 133
-      id: '1739254296073'
-      parentId: '1739244888446'
-      position:
-        x: 846.594424897309
-        y: 809.1926368152558
-      positionAbsolute:
-        x: 1186.7903854278284
-        y: 800.4403734724506
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-      zIndex: 1002
-    - data:
-        desc: ''
-        isInIteration: true
-        iteration_id: '1739244888446'
-        selected: false
-        template: ' '
-        title: 空白
-        type: template-transform
-        variables: []
-      height: 51
-      id: '1739254516383'
-      parentId: '1739244888446'
-      position:
-        x: 325.7307650151919
-        y: 816.4367334473013
-      positionAbsolute:
-        x: 665.9267255457113
-        y: 807.6844701044961
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-      zIndex: 1002
-    - data:
-        author: stvlynn
-        desc: ''
-        height: 122
-        selected: false
-        showAuthor: true
-        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"使用GPT-4o模型分析用户的初始查询，提取搜索关键词和主题，并判断是否需要进行下一步搜索。输出结果为JSON格式的文本。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
-        theme: blue
-        title: ''
-        type: ''
-        width: 350
-      height: 122
-      id: '1739285077334'
-      position:
-        x: 948.80724613123
-        y: 449.90497909172234
-      positionAbsolute:
-        x: 948.80724613123
-        y: 449.90497909172234
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom-note
-      width: 350
     - data:
         context:
           enabled: true
           variable_selector:
-          - '1739244888446'
-          - output
+          - '1776865633941'
+          - text
         model:
-          completion_params: {}
+          completion_params:
+            temperature: 0.7
           mode: chat
           name: deepseek-chat
           provider: langgenius/deepseek/deepseek
         prompt_template:
         - id: 3993c43b-aacc-460b-9a5b-beb7e0b86d0b
           role: system
-          text: '基于刚才检索的所有结果{{#1739244888446.output#}}，为我生成 1个最精准的 B 站搜索关键词以及搜索排序方式（排序策略。可选值：totalrank(综合排序，适用于宏观行业与长期趋势),
-            pubdate(最新发布，适用于突发事件的应激反应), click(最多点击)。大模型需根据调研场景自主选择。）
+          text: '基于刚才检索的所有结果{{#1776865633941.text#}}，（此结果可能为股票或etf代码，也可能是某证券所在领域）为我生成
+            1个最精准的 B 站搜索关键词以及搜索排序方式（排序策略。可选值：totalrank(综合排序，适用于宏观行业与长期趋势), pubdate(最新发布，适用于突发事件的应激反应),
+            click(最多点击)。大模型需根据调研场景自主选择。以便于更好了解证券市场的情况和信息
 
             ## 输出
 
@@ -1170,12 +551,49 @@ workflow:
       height: 87
       id: '1776775338182'
       position:
-        x: 2399.951521389399
-        y: -8.752263342805293
+        x: 1984
+        y: 167
       positionAbsolute:
-        x: 2399.951521389399
-        y: -8.752263342805293
+        x: 1984
+        y: 167
       selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        instruction: 你是一个无情的转化器，从获取到的数据中提取三个视频号并转化为arry格式
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        parameters:
+        - description: '三个b站视频的bvid
+
+            '
+          name: bvid
+          required: false
+          type: array[string]
+        query:
+        - '1777038274101'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 提取bvid
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 87
+      id: '1776778191412'
+      position:
+        x: 3327
+        y: 174.851301645003
+      positionAbsolute:
+        x: 3327
+        y: 174.851301645003
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -1183,11 +601,11 @@ workflow:
     - data:
         error_handle_mode: terminated
         flatten_output: true
-        height: 439
+        height: 502
         is_parallel: false
         iterator_input_type: array[string]
         iterator_selector:
-        - '1777037285306'
+        - '1776778191412'
         - bvid
         output_selector:
         - '1776778841977'
@@ -1198,20 +616,20 @@ workflow:
         start_node_id: 1776778390328start
         title: 迭代 2
         type: iteration
-        width: 825
-      height: 439
+        width: 810
+      height: 502
       id: '1776778390328'
       position:
-        x: 4222.737349714919
-        y: 87.28503004688082
+        x: 3663.56027161426
+        y: -59.80991703201414
       positionAbsolute:
-        x: 4222.737349714919
-        y: 87.28503004688082
+        x: 3663.56027161426
+        y: -59.80991703201414
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 825
+      width: 810
       zIndex: 1
     - data:
         desc: ''
@@ -1227,8 +645,8 @@ workflow:
         x: 60
         y: 87
       positionAbsolute:
-        x: 4282.737349714919
-        y: 174.28503004688082
+        x: 3723.56027161426
+        y: 27.19008296798586
       selectable: false
       sourcePosition: right
       targetPosition: left
@@ -1236,14 +654,6 @@ workflow:
       width: 44
       zIndex: 1002
     - data:
-        default_value:
-        - key: text
-          type: string
-          value: 弹幕或评论区已关闭
-        - key: json
-          type: array[object]
-          value: '[]'
-        error_strategy: default-value
         isInIteration: true
         isInLoop: false
         is_team_authorization: true
@@ -1363,15 +773,15 @@ workflow:
             type: constant
             value: 50
         type: tool
-      height: 87
+      height: 51
       id: '1776778536282'
       parentId: '1776778390328'
       position:
         x: 184
-        y: 85
+        y: 83.85130164500296
       positionAbsolute:
-        x: 4406.737349714919
-        y: 172.28503004688082
+        x: 3847.56027161426
+        y: 24.04138461298882
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1393,18 +803,18 @@ workflow:
           write_mode: over-write
         iteration_id: '1776778390328'
         selected: false
-        title: 变量赋值 3
+        title: 追加视频分析结果
         type: assigner
         version: '2'
       height: 83
       id: '1776778574203'
       parentId: '1776778390328'
       position:
-        x: 502.03886694226094
-        y: 78.18859879812476
+        x: 508.5900235000431
+        y: 73.82256862846296
       positionAbsolute:
-        x: 4724.77621665718
-        y: 165.47362884500558
+        x: 4172.150295114303
+        y: 14.01265159644882
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1417,7 +827,7 @@ workflow:
         iteration_id: '1776778390328'
         selected: false
         template: "{{ item }}分析中，第{{ index+1 }}/3个视频\r\n\r\n"
-        title: 模板转换 3
+        title: 分析过程显示
         type: template-transform
         variables:
         - value_selector:
@@ -1434,11 +844,11 @@ workflow:
       id: '1776778841977'
       parentId: '1776778390328'
       position:
-        x: 158.19659090448386
-        y: 293.94299399062385
+        x: 81.93063450114369
+        y: 221.3724638891763
       positionAbsolute:
-        x: 4380.933940619403
-        y: 381.22802403750467
+        x: 3745.4909061154035
+        y: 161.56254685716215
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1451,18 +861,18 @@ workflow:
         isInLoop: false
         iteration_id: '1776778390328'
         selected: false
-        title: 直接回复 3
+        title: 分析输出
         type: answer
         variables: []
       height: 102
       id: '1776861389665'
       parentId: '1776778390328'
       position:
-        x: 494.35375656958786
-        y: 266.94299399062385
+        x: 99.34606925192747
+        y: 336
       positionAbsolute:
-        x: 4717.091106284507
-        y: 354.22802403750467
+        x: 3762.9063408661873
+        y: 276.19008296798586
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1470,74 +880,475 @@ workflow:
       width: 241
       zIndex: 1002
     - data:
-        answer: '准备搜索视频中
-
-
-
-          '
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 4dae37e3-4f27-40eb-83bd-1dd6f7219df4
+          role: system
+          text: "你是一个股票行业分析专家，根据用户给出信息，确定需要分析的股票名称以及代码，或者行业ETF名称,\n\nstockcode_name为akshare调用的symbol，具体股票是代码，行业是名称\n\
+            search是网页搜索的主题\n## 输出\n如果确实存在相关股票或ETF或证券领域：\n- 请以json格式输出，绝对不要使用 ```json\
+            \ 和 ``` 这样的 Markdown 代码块标记将结果包裹起来。直接以 { 开始，以 } 结束。\n\n```json\nstockcode_name：str\n\
+            search: str \n```\n\n如果不存在相关信息或用户输入无意义：\n返回空值"
+        - id: a8f4c26c-c404-4379-9071-7df6d014bce2
+          role: user
+          text: 用户需求{{#sys.query#}}
         selected: false
-        title: 过程回复
-        type: answer
-        variables: []
-      height: 99
-      id: '1776946362425'
+        title: 确定主题
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1776865104091'
       position:
-        x: 2043.7943557242947
-        y: -20.595097677701403
+        x: 517.1713379968714
+        y: 5.810413160023742
       positionAbsolute:
-        x: 2043.7943557242947
-        y: -20.595097677701403
+        x: 517.1713379968714
+        y: 5.810413160023742
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 241
     - data:
-        answer: '待分析视频已确定，请等待分析
-
-
-
-          '
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: ''
+          form: llm
+          human_description:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          label:
+            en_US: interest
+            ja_JP: interest
+            pt_BR: interest
+            zh_Hans: interest
+          llm_description: ''
+          max: null
+          min: null
+          name: interest
+          options: []
+          placeholder:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          interest: ''
+        plugin_id: null
+        plugin_unique_identifier: null
+        provider_icon:
+          background: '#FFEAD5'
+          content: 🤖
+        provider_id: 42f74061-6c79-430d-922e-661ff2f19f38
+        provider_name: 联网查询搜索
+        provider_type: workflow
         selected: false
-        title: 过程回复
-        type: answer
-        variables: []
-      height: 99
-      id: '1776946384500'
+        title: 联网查询搜索
+        tool_configurations: {}
+        tool_description: 联网搜索相关信息
+        tool_label: 联网查询搜索
+        tool_name: netconnect_search
+        tool_node_version: '2'
+        tool_parameters:
+          interest:
+            type: mixed
+            value: '{{#1776865605690.text#}}'
+        type: tool
+      height: 51
+      id: '1776865406419'
       position:
-        x: 3917.404879317596
-        y: 87.28503004688082
+        x: 2325.1271817411794
+        y: -263.1260794610688
       positionAbsolute:
-        x: 3917.404879317596
-        y: 87.28503004688082
+        x: 2325.1271817411794
+        y: -263.1260794610688
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 241
     - data:
-        items:
-        - input_type: variable
-          operation: append
-          value:
-          - '1739246156652'
-          - text
-          variable_selector:
-          - conversation
-          - historyinfo
-          write_mode: over-write
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON数据
+            zh_Hans: JSON数据
+          label:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON data
+            zh_Hans: JSON数据
+          llm_description: JSON data to be processed
+          max: null
+          min: null
+          name: content
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON fields to be parsed
+            ja_JP: JSON fields to be parsed
+            pt_BR: JSON fields to be parsed
+            zh_Hans: 需要解析的 JSON 字段
+          label:
+            en_US: JSON filter
+            ja_JP: JSON filter
+            pt_BR: JSON filter
+            zh_Hans: JSON解析对象
+          llm_description: JSON fields to be parsed
+          max: null
+          min: null
+          name: json_filter
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: true
+          form: form
+          human_description:
+            en_US: Ensure the JSON output is ASCII encoded
+            ja_JP: Ensure the JSON output is ASCII encoded
+            pt_BR: Ensure the JSON output is ASCII encoded
+            zh_Hans: 确保输出的 JSON 是 ASCII 编码
+          label:
+            en_US: Ensure ASCII
+            ja_JP: Ensure ASCII
+            pt_BR: Ensure ASCII
+            zh_Hans: 确保 ASCII
+          llm_description: ''
+          max: null
+          min: null
+          name: ensure_ascii
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        params:
+          content: ''
+          ensure_ascii: ''
+          json_filter: ''
+        plugin_id: langgenius/json_process
+        plugin_unique_identifier: langgenius/json_process:0.0.3@e5d63c6e289bf1974dd55fde5e0347ab108f7df0b95044e292e02e1b41c71668
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=0469887d-dc54-4325-94af-d721ad78f44b&filename=2e9f75c0e5502c96a2dfdd557f425271f6b97a4b4ba5c6a5f017e0f933567d11.svg
+        provider_id: langgenius/json_process/json_process
+        provider_name: langgenius/json_process/json_process
+        provider_type: builtin
         selected: false
-        title: 变量赋值 4
-        type: assigner
-        version: '2'
-      height: 83
-      id: '1776949093407'
+        title: search
+        tool_configurations:
+          ensure_ascii:
+            type: constant
+            value: true
+        tool_description: 一个解析JSON对象的工具
+        tool_label: JSON 解析
+        tool_name: parse
+        tool_node_version: '2'
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1776865104091.text#}}'
+          json_filter:
+            type: mixed
+            value: search
+        type: tool
+      height: 87
+      id: '1776865605690'
       position:
-        x: 5363.116679160862
-        y: 311.61108189041965
+        x: 1630.8576180254759
+        y: -273.5726862206223
       positionAbsolute:
-        x: 5363.116679160862
-        y: 311.61108189041965
+        x: 1630.8576180254759
+        y: -273.5726862206223
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON数据
+            zh_Hans: JSON数据
+          label:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON data
+            zh_Hans: JSON数据
+          llm_description: JSON data to be processed
+          max: null
+          min: null
+          name: content
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON fields to be parsed
+            ja_JP: JSON fields to be parsed
+            pt_BR: JSON fields to be parsed
+            zh_Hans: 需要解析的 JSON 字段
+          label:
+            en_US: JSON filter
+            ja_JP: JSON filter
+            pt_BR: JSON filter
+            zh_Hans: JSON解析对象
+          llm_description: JSON fields to be parsed
+          max: null
+          min: null
+          name: json_filter
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: true
+          form: form
+          human_description:
+            en_US: Ensure the JSON output is ASCII encoded
+            ja_JP: Ensure the JSON output is ASCII encoded
+            pt_BR: Ensure the JSON output is ASCII encoded
+            zh_Hans: 确保输出的 JSON 是 ASCII 编码
+          label:
+            en_US: Ensure ASCII
+            ja_JP: Ensure ASCII
+            pt_BR: Ensure ASCII
+            zh_Hans: 确保 ASCII
+          llm_description: ''
+          max: null
+          min: null
+          name: ensure_ascii
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        params:
+          content: ''
+          ensure_ascii: ''
+          json_filter: ''
+        plugin_id: langgenius/json_process
+        plugin_unique_identifier: langgenius/json_process:0.0.3@e5d63c6e289bf1974dd55fde5e0347ab108f7df0b95044e292e02e1b41c71668
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=0469887d-dc54-4325-94af-d721ad78f44b&filename=2e9f75c0e5502c96a2dfdd557f425271f6b97a4b4ba5c6a5f017e0f933567d11.svg
+        provider_id: langgenius/json_process/json_process
+        provider_name: langgenius/json_process/json_process
+        provider_type: builtin
+        selected: false
+        title: stockcode_name
+        tool_configurations:
+          ensure_ascii:
+            type: constant
+            value: true
+        tool_description: 一个解析JSON对象的工具
+        tool_label: JSON 解析
+        tool_name: parse
+        tool_node_version: '2'
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1776865104091.text#}}'
+          json_filter:
+            type: mixed
+            value: stockcode_name
+        type: tool
+      height: 87
+      id: '1776865633941'
+      position:
+        x: 1603
+        y: 167
+      positionAbsolute:
+        x: 1603
+        y: 167
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: 'akshare数据分析中
+
+
+
+          '
+        selected: false
+        title: akshare数据分析中
+        type: answer
+        variables: []
+      height: 99
+      id: '1776947104022'
+      position:
+        x: 3923.742506823362
+        y: 569.336245562176
+      positionAbsolute:
+        x: 3923.742506823362
+        y: 569.336245562176
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: '联网查询搜索中
+
+
+
+          '
+        selected: false
+        title: 联网查询搜索中
+        type: answer
+        variables: []
+      height: 99
+      id: '1776947138410'
+      position:
+        x: 3944.63572034247
+        y: -285.37887877980563
+      positionAbsolute:
+        x: 3944.63572034247
+        y: -285.37887877980563
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: '视频分析结束
+
+
+          '
+        selected: false
+        title: 视频分析结束
+        type: answer
+        variables: []
+      height: 99
+      id: '1776947168738'
+      position:
+        x: 4564.941397433346
+        y: 237.5599361377088
+      positionAbsolute:
+        x: 4564.941397433346
+        y: 237.5599361377088
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: 'b站视频搜索中，请等待分析
+
+
+
+          '
+        selected: false
+        title: b站视频搜索中
+        type: answer
+        variables: []
+      height: 99
+      id: '1776948900874'
+      position:
+        x: 2957.680492089227
+        y: 174.851301645003
+      positionAbsolute:
+        x: 2957.680492089227
+        y: 174.851301645003
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is not
+            id: ba006de3-7910-48a0-a34a-7e2c4680c76c
+            value: '{}'
+            varType: string
+            variable_selector:
+            - '1776865104091'
+            - text
+          id: 'true'
+          logical_operator: and
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 123
+      id: '1776951200140'
+      position:
+        x: 962.7844433828203
+        y: 5.810413160023742
+      positionAbsolute:
+        x: 962.7844433828203
+        y: 5.810413160023742
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: 未找到相关stock信息，请检查输入
+        selected: false
+        title: '直接回复 '
+        type: answer
+        variables: []
+      height: 99
+      id: '1776951238187'
+      position:
+        x: 1213.9751450279566
+        y: 341.2954770385039
+      positionAbsolute:
+        x: 1213.9751450279566
+        y: 341.2954770385039
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1571,6 +1382,7 @@ workflow:
               你的回复必须是一个纯粹的 JSON 数组，包含你选中的且仅限 3 个视频的 bvid 字符串。
 
               -----------------------------------------------
+
 
 
 
@@ -1644,55 +1456,123 @@ workflow:
         tool_node_version: '2'
         type: agent
       height: 187
-      id: '1777036926643'
+      id: '1777038274101'
       position:
-        x: 3167.1233719682755
-        y: 15.351110775917505
+        x: 2399.489847171043
+        y: 174.851301645003
       positionAbsolute:
-        x: 3167.1233719682755
-        y: 15.351110775917505
+        x: 2399.489847171043
+        y: 174.851301645003
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 241
     - data:
-        instruction: 你是一个无情的转化器，从获取到的数据中提取三个视频号并转化为arry格式
-        model:
-          completion_params:
-            temperature: 0.7
-          mode: chat
-          name: deepseek-chat
-          provider: langgenius/deepseek/deepseek
-        parameters:
-        - description: 提取到的三个b站视频
-          name: bvid
-          required: true
-          type: array[string]
-        query:
-        - '1777036926643'
-        - text
-        reasoning_mode: prompt
+        agent_parameters:
+          instruction:
+            type: constant
+            value: '你是一位服务于顶级机构的资深量化风控研究员。
+
+              你的核心任务是：精准识别用户的查询意图，自主调用底层量化数据接口，并为用户输出一份结构化、极具专业感的投资诊断简报。
+
+
+              【执行 SOP（标准作业程序）：你必须严格按以下两步执行】
+
+
+              ### 第一步：意图解析与工具调用
+
+              1. 提取标的 (symbol)：从用户的输入中，提取出想要查询的股票名称、代码或板块名称（例如：“贵州茅台”、“600519”、“半导体”），这将作为你调用工具时必须填写的
+              `symbol` 参数。
+
+              2. 判定类型 (asset_type)：根据你的金融知识，判断该标的是股票（填 "stock"）、ETF基金（填 "etf"）还是行业/概念板块（填
+              "board"）。
+
+              3. 立即调用：使用上述确定的 `symbol` 和 `asset_type`，立即调用你拥有的【获取融合量化因子】工具获取数据。
+
+
+              ### 第二步：研报生成与图表渲染
+
+              在工具成功返回 JSON 数据后，请仔细读取数据中的 `analysis_summary`（诊断文本）和 `chart_url`（图片路径）字段，并按以下结构输出最终回复：
+
+
+              1. 核心结论先行：将工具返回的 `analysis_summary` 转化为流畅的投研报告口吻。明确指出当前标的处于震荡、偏弱还是偏强状态。
+
+              2. 因子深度剖析：基于返回的各项指标（如MACD、RSI、MFI），给出客观的风险预警（注意提示超买或超卖风险）。如果上下文中存在新闻舆情数据，请将技术面诊断与舆情进行交叉验证。记得说明数据开始截止日期，时间区间
+
+              3. 数据红线：严禁捏造！只允许使用工具返回的真实数值，绝不可自行编造收盘价或因子数据。
+
+              4. 图表呈现（关键！）：你必须在报告的最末尾，使用 Markdown 格式渲染底层引擎生成的走势图。你需要将工具返回的 `chart_url`
+              字段的值，拼接到服务器地址后直接输出（切勿使用代码块包裹）。
+
+
+              输出格式严格参照如下：
+
+              ![量价走势与布林带图](http://host.docker.internal:8005【这里替换为工具返回的 chart_url 的真实值】)
+
+              (举例：如果工具返回的 chart_url 是 /static/images/123.png，你必须输出：![量价走势与布林带图](http://host.docker.internal:8005/static/images/123.png))'
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: deepseek-chat
+              model_type: llm
+              provider: langgenius/deepseek/deepseek
+              type: model-selector
+          query:
+            type: constant
+            value: 用户的输入{{#1776865633941.text#}}
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: 获取融合量化因子
+              parameters:
+                asset_type:
+                  auto: 1
+                  value: null
+                period_months:
+                  auto: 1
+                  value: null
+                symbol:
+                  auto: 1
+                  value: null
+              provider_name: 59b5a4fc-2dd8-4df6-abac-6235f395a19c
+              provider_show_name: akshare数据+因子
+              settings: {}
+              tool_description: 获取融合量化因子
+              tool_label: get_comprehensive_factors
+              tool_name: get_comprehensive_factors
+              type: api
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        meta:
+          minimum_dify_version: 1.7.0
+          version: 0.0.2
+        output_schema: {}
+        plugin_unique_identifier: langgenius/agent:0.0.34@4b41a374567eb7cb226ee2f851513794566956008f1166c63205efc921be72d8
         selected: false
-        title: 参数提取器
-        type: parameter-extractor
-        vision:
-          enabled: false
-      height: 87
-      id: '1777037285306'
+        title: Agent 2
+        tool_node_version: '2'
+        type: agent
+      height: 187
+      id: '1777180873585'
       position:
-        x: 3570.8927926647807
-        y: 39.938851587208816
+        x: 1971.132145401321
+        y: 577.3820737051136
       positionAbsolute:
-        x: 3570.8927926647807
-        y: 39.938851587208816
+        x: 1971.132145401321
+        y: 577.3820737051136
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 241
     viewport:
-      x: -35.48281139607775
-      y: 49.1864683575659
-      zoom: 0.5743491774985179
+      x: 239.67600176483393
+      y: 358.8048546664166
+      zoom: 0.25
   rag_pipeline_variables: []
