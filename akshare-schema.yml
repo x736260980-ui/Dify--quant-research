@@ -1,0 +1,84 @@
+openapi: 3.1.0
+info:
+  title: AkShare Comprehensive Factors API
+  description: 为 Dify 智能体提供全资产（股票、ETF、板块）的基础统计与技术因子（MACD/RSI/MFI）计算与分析。
+  version: 1.0.0
+servers:
+  #- url: http://host.docker.internal:8000 此处地址与py文件保持一致，为本地地址
+    description: Dify 容器化部署地址
+paths:
+  /api/finance/comprehensive_factors:
+    post:
+      summary: 获取融合量化因子
+      operationId: get_comprehensive_factors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                symbol:
+                  type: string
+                  description: "资产名称或代码，例如 '贵州茅台', '600519', 或 '半导体'"
+                asset_type:
+                  type: string
+                  description: "资产类型枚举，仅支持 'stock' (股票), 'etf' (基金), 'board' (板块)"
+                  default: stock
+                period_months:
+                  type: integer
+                  description: "历史数据拉取的月数，建议保留默认值 3，以确保 MACD 等长期技术因子计算的准确性"
+                  default: 3
+              required:
+                - symbol
+      responses:
+        "200":
+          description: 成功返回结构化因子与文本诊断数据
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "接口状态，'success' 或 'error'"
+                  data:
+                    type: object
+                    properties:
+                      symbol:
+                        type: string
+                      asset_type:
+                        type: string
+                      stock_code:
+                        type: string
+                        description: 解析后的标准代码
+                      analysis_summary:
+                        type: string
+                        description: 可以直接供 LLM 阅读和输出的自然语言诊断文本
+                      raw_factors:
+                        type: object
+                        description: 供后续数值计算使用的核心量价因子字典
+                        properties:
+                          current_price:
+                            type: number
+                          period_return_pct:
+                            type: number
+                          macd:
+                            type: number
+                          rsi_14:
+                            type: number
+                          mfi_14:
+                            type: number
+                      trajectory:
+                        type: array
+                        description: 收盘价的历史轨迹，可用于前端绘制迷你图
+                        items:
+                          type: object
+                          properties:
+                            date:
+                              type: string
+                            price:
+                              type: number
+                      chart_url:
+                        type: string
+                        description: 技术分析走势图的静态资源相对路径
