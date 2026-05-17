@@ -4,7 +4,7 @@
 
 将金融量化数据（AkShare 技术因子）与双平台大众情绪（B站弹幕/评论 + 抖音评论）、宏观资讯（Web 检索）深度融合，通过 LLM（DeepSeek）进行交叉验证，输出结构化、可视化的投研参考报告。
 
-![工作流概览](https://github.com/user-attachments/assets/8695565d-9fde-459b-a077-262b36133e41)
+![工作流概览](<img width="2341" height="693" alt="image" src="https://github.com/user-attachments/assets/aadd1d7a-df7e-4674-8f4b-8c3d60b62428" />)
 
 ---
 
