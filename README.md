@@ -4,13 +4,15 @@
 
 将金融量化数据（AkShare 技术因子）与双平台大众情绪（B站弹幕/评论 + 抖音评论）、宏观资讯（Web 检索）深度融合，通过 LLM（DeepSeek）进行交叉验证，输出结构化、可视化的投研参考报告。
 
+> **舆情 Agent 启用策略**：舆情采集 Agent 仅在需要验证**市场情绪与事实的背离/共振**时启用。例如：重大利好/利空消息后的散户情绪反馈、产品发布会后的口碑发酵、社交媒体异动预警。对于纯技术面分析或宏观政策解读等不依赖情绪佐证的场景，应关闭舆情链路，减少不必要的 API 调用与延迟。
+
 ![工作流概览]<img width="2341" height="693" alt="image" src="https://github.com/user-attachments/assets/8a2a5472-2aac-483f-9bc1-1887844f808e" />
 
 ---
 
 ## 系统架构
 
-项目由 **四个独立微服务**（六个 API 端点）和一个 **Dify 工作流编排层** 组成：
+项目由 **五个独立微服务** 和一个 **Dify 工作流编排层** 组成：
 
 ```
                     Dify 工作流编排（Agent 驱动）
@@ -26,8 +28,7 @@
   │            └──────────────────────────────┘               │
   └──────────────────────────────────────────────────────────┘
          ↑              ↑              ↑              ↑
-    端口 8000       端口 8000     8002/8003     8005/8006
-   AkShare因子      联网搜索      B站探针        抖音探针
+      AkShare       联网搜索       B站探针        抖音探针
 ```
 
 > **B站** 覆盖 Z 世代深度讨论，**抖音** 覆盖泛人群情绪扩散，双平台互补，舆情画像更完整。工作流中 Agent 以抖音搜索为切入点，联动 B站 并发探针和抖音评论进行深挖。
@@ -36,13 +37,13 @@
 
 ## 微服务一览
 
-| 服务 | 文件 | 端口 | 功能 |
-|------|------|------|------|
-| AkShare 因子计算 | [fast_api(akshare).py](fast_api(akshare).py) | 8000 | 股票/ETF/板块量价因子 + 趋势图 |
-| B站 并发舆情探针 | [bilibili_ 评论api.py](bilibili_%20评论api.py) | 8002 | 批量并发获取元数据、弹幕、评论 |
-| B站 搜索雷达 | [bilibili_ 搜索api.py](bilibili_%20搜索api.py) | 8003 | 关键词搜索，返回 BVID 与标题 |
-| 抖音搜索 | [dy搜索api.py](dy搜索api.py) | 8005 | 浏览器自动化搜索抖音视频 |
-| 抖音评论 | [dy评论api.py](dy评论api.py) | 8006 | a_bogus 签名协议获取评论 |
+| 服务 | 功能 |
+|------|------|
+| AkShare 因子计算 | 股票/ETF/板块量价因子 + 趋势图 |
+| B站 并发舆情探针 | 批量并发获取元数据、弹幕、评论 |
+| B站 搜索雷达 | 关键词搜索，返回 BVID 与标题 |
+| 抖音搜索 | 浏览器自动化搜索抖音视频 |
+| 抖音评论 | a_bogus 签名协议获取评论 |
 
 ---
 
@@ -114,7 +115,7 @@ POST /api/bili/batch-full
 
 基于 **DrissionPage** 接管本地 Chrome 浏览器，模拟用户滚动搜索抖音视频，拦截底层 API 返回数据。
 
-- 自动启动 Chrome 远程调试模式（端口 9222）
+- 自动启动 Chrome 远程调试模式
 - 滚动加载 + 网络包拦截，获取视频 ID、作者、点赞量、文案
 - 遇到验证码时需手动在浏览器中完成
 
@@ -181,7 +182,7 @@ POST /api/dy/comments
 - 抖音 Cookie + `a_bogus_server.js`（仅抖音评论需要）
 - Chrome 浏览器（仅抖音搜索需要）
 
-### 安装
+### 安装依赖
 
 ```bash
 pip install fastapi uvicorn akshare pandas pandas-ta matplotlib bilibili-api-python DrissionPage requests python-dotenv
@@ -190,19 +191,19 @@ pip install fastapi uvicorn akshare pandas pandas-ta matplotlib bilibili-api-pyt
 ### 启动服务
 
 ```bash
-# AkShare 因子服务（端口 8000）
+# AkShare 因子服务
 python "fast_api(akshare).py"
 
-# B站 并发舆情（端口 8002）
+# B站 并发舆情
 python "bilibili_ 评论api.py"
 
-# B站 搜索（端口 8003）
+# B站 搜索
 python "bilibili_ 搜索api.py"
 
-# 抖音搜索（端口 8005）— 会自动启动 Chrome
+# 抖音搜索 — 会自动启动 Chrome
 python "dy搜索api.py"
 
-# 抖音评论（端口 8006）— 需要同级 a_bogus_server.js
+# 抖音评论 — 需要同级 a_bogus_server.js
 python "dy评论api.py"
 ```
 
@@ -214,18 +215,6 @@ python "dy评论api.py"
 4. 导入 [dify_file.yml](dify_file.yml) 获取完整工作流配置
 
 > **Docker 部署注意**：容器内访问宿主机需使用 `http://host.docker.internal:8000`。抖音搜索依赖本地 Chrome，不适合容器化部署。
-
----
-
-## 服务端口汇总
-
-| 服务 | 说明 |
-|------|------|
-| AkShare 因子 / 也可部署联网搜索 | 可复用，注意冲突 |
-| B站 并发舆情（batch-full） | 批量获取弹幕+评论 |
-| B站 搜索雷达 | 关键词搜视频 |
-| 抖音搜索 | 依赖本地 Chrome |
-| 抖音评论 | 依赖 a_bogus 签名服务 |
 
 ---
 
